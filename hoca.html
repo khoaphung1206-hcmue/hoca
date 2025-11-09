@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bể cá vui nhộn</title>
+<style>
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* đảm bảo 100% chiều cao */
+}
+    body{
+        margin: 0;
+        overflow: hidden;
+        background: url("hinhanh/water.gif") no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+    }
+    .navbar{
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 55px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        box-sizing: border-box;
+        z-index: 99;
+        gap: 10px;
+    }
+    .navbar h2{
+        flex: 1;
+        margin: 0;
+    }
+    .sea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("hinhanh/water.gif") no-repeat center center;
+    background-size: cover; /* hoặc contain tùy hiệu ứng */
+    overflow: hidden;
+    }
+    .shark{
+        position: absolute;
+        top: 40%;
+        width: 200px;
+        animation: sharkMove 9s linear infinite;
+    }
+    @keyframes sharkMove{
+        0% { left: -300px; transform: scaleX(1); }
+        49% { left: 100vw; transform: scaleX(1); }
+        50% { left: 100vw; transform: scaleX(-1); }
+        100%{ left: -300px; transform: scaleX(-1);}
+    }
+    .turtle{
+        position: absolute;
+        top: 75%;
+        width: 150px;
+        animation: turtleMove 18s linear infinite;
+    }
+    @keyframes turtleMove{
+        0% { left: 100vw; transform: scaleX(-1); }
+        49% { left: -200px; transform: scaleX(-1); }
+        50% { left: -200px; transform: scaleX(1); }
+        100%{ left: 100vw; transform: scaleX(1);}
+    }
+    .diver{
+        position: absolute;
+        width: 120px;
+        animation: diverMove 4s ease-in-out infinite;
+    }
+    @keyframes diverMove{
+        0% { top: 10%; }
+        50%{ top: 75%; }
+        100%{ top: 10%; }
+    }
+</style>
+</head>
+<body>
+<div class="navbar">
+    <h2>🐟 BỂ CÁ VUI NHỘN</h2>
+    <select id="musicList">
+        <option value="nhac/buitruonglinh.mp3">Từng ngày yêu em - buitruonglinh</option>
+        <option value="nhac/sontungmtp.mp3">Nơi này có anh - Sơn Tùng MTP</option>
+        <option value="nhac/mck.mp3">Chìm sâu - MCK ft. Trung Trần</option>
+        <option value="nhac/hieuthuhai.mp3">Exit sign - Hieuthuhai</option>
+        <option value="nhac/kendrick.mp3">Luther - Kendrick Lamar</option>
+    </select>
+    <button id="toggleMusic">🔈 Bật/Tắt</button>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+</div>
+<div class="sea">
+    <img src="hinhanh/shark.png" class="shark">
+    <img src="hinhanh/turtle.png" class="turtle">
+    <img src="hinhanh/diver.png" class="diver" style="left:20%;">
+    <img src="hinhanh/diver.png" class="diver" style="left:40%; animation-duration:6s;">
+    <img src="hinhanh/diver.png" class="diver" style="left:60%; animation-duration:5s;">
+</div>
+<audio id="bgm" loop>
+    <source src="nhac/buitruonglinh.mp3" type="audio/mp3">
+</audio>
+<script>
+    const bgm = document.getElementById("bgm");
+    const btn = document.getElementById("toggleMusic");
+    const vol = document.getElementById("volume");
+    const list = document.getElementById("musicList");
+    btn.onclick = () => {
+        if(bgm.paused) bgm.play();
+        else bgm.pause();
+    };
+    vol.oninput = () => {
+        bgm.volume = vol.value;
+    };
+    list.onchange = () => {
+        bgm.pause();
+        bgm.src = list.value;
+        bgm.play();
+    };
+</script>
+</body>
+</html>
