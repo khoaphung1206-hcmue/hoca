@@ -1,0 +1,72 @@
+ body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+    body{
+        margin: 0;
+        overflow: hidden;
+        background: url("hinhanh/water.gif") no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+    }
+    .navbar{
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        height: 55px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        box-sizing: border-box;
+        z-index: 99;
+        gap: 10px;
+    }
+    .navbar h2{
+        flex: 1;
+        margin: 0;
+    }
+    .sea {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url("hinhanh/water.gif") no-repeat center center;
+    background-size: cover; /* hoặc contain tùy hiệu ứng */
+    overflow: hidden;
+    }
+    .shark{
+        position: absolute;
+        top: 40%;
+        width: 200px;
+        animation: sharkMove 9s linear infinite;
+    }
+    @keyframes sharkMove{
+        0% { left: -300px; transform: scaleX(1); }
+        49% { left: 100vw; transform: scaleX(1); }
+        50% { left: 100vw; transform: scaleX(-1); }
+        100%{ left: -300px; transform: scaleX(-1);}
+    }
+    .turtle{
+        position: absolute;
+        top: 75%;
+        width: 150px;
+        animation: turtleMove 18s linear infinite;
+    }
+    @keyframes turtleMove{
+        0% { left: 100vw; transform: scaleX(-1); }
+        49% { left: -200px; transform: scaleX(-1); }
+        50% { left: -200px; transform: scaleX(1); }
+        100%{ left: 100vw; transform: scaleX(1);}
+    }
+    .diver{
+        position: absolute;
+        width: 120px;
+        animation: diverMove 4s ease-in-out infinite;
+    }
+    @keyframes diverMove{
+        0% { top: 10%; }
+        50%{ top: 75%; }
+        100%{ top: 10%; }
+    }
